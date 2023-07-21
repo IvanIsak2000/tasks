@@ -1,5 +1,5 @@
 alphabet = {
-  "A": "Alpha",
+  "A": "Alfa",
   "B": "Bravo",
   "C": "Charlie",
   "D": "Delta",
