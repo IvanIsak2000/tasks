@@ -13,12 +13,11 @@ def get_alphabet():
     letters = list(alphabet)
     letters = list(map(str.lower, alphabet))
 
-    if sort != None or sort == 'desc':
+    if sort == 'desc':
         letters = letters[::-1] 
 
-
     if limit == None and offset == None:
-        return ''.join(map(str.lower,letters))
+        return ''.join(letters)
 
     if limit != None and offset == None:
         return ''.join(letters[:int(limit)])
