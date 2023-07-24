@@ -14,7 +14,7 @@ def get_alphabet():
     letters = list(map(str.lower, alphabet))
 
     if sort == 'desc':
-        letters = letters[::-1] 
+        letters = letters.reverse()
 
     if limit == None and offset == None:
         return ''.join(letters)
