@@ -8,17 +8,18 @@ app = Flask(__name__)
 def offset():
     limit = int(request.args.get('limit'))
     offset = int(request.args.get('offset'))
+    letters = list(map(str.lower, alphabet))
 
     if limit <= 26 and offset <26:
-        start_letter = list(alphabet)[offset]
-        answer = ''
+        answer = []
         i=0
         while limit>0:
             try:
-                answer += (list(alphabet)[offset+i]).lower()
+                answer.append(letters[offset+i].lower())
             except IndexError:
                 break
             i+=1
             limit -=1
-        return answer
+        return ''.join(answer)
+
     return '-'
