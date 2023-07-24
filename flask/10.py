@@ -1,8 +1,7 @@
 from alphabet import alphabet
-
 from flask import Flask, request, abort
-
 app = Flask(__name__)
+
 
 @app.route('/letters/')
 def get_alphabet():
@@ -13,36 +12,34 @@ def get_alphabet():
     letters = list(alphabet)
     letters = list(map(str.lower, alphabet))
 
-    if sort == 'desc':
-        letters = letters.reverse()
+    try:
+        limit = int(limit)
+        offset = int(offset)
+    except ValueError:
+        pass
 
-    if limit == None and offset == None:
+    if sort == 'desc':
+        letters = letters[::-1]
+
+    if limit is None and offset is None:
         return ''.join(letters)
 
-    if limit != None and offset == None:
-        return ''.join(letters[:int(limit)])
+    if limit is not None and offset is None:
+        return ''.join(letters[:limit])
 
-    if offset != None and limit == None:
-        return ''.join(letters[int(limit):])
+    if offset is not None and limit is None:
+        return ''.join(letters[limit:])
 
-    if limit != None and offset != None:
-        return 
-
+    if limit is not None and offset is not None:
+        if limit <= 26 and offset < 26:
+            answer = []
+            i = 0
+            while limit > 0:
+                try:
+                    answer.append(letters[offset + i].lower())
+                except IndexError:
+                    break
+                i += 1
+                limit -= 1
+            return ''.join(answer)
     return letters
-
-
-
-
-    # if limit <= 26 and offset <26:
-    #     start_letter = list(alphabet)[offset]
-    #     answer = []
-    #     i=0
-    #     while limit>0:
-    #         try:
-    #             answer.append(list(alphabet)[offset+i]).lower()
-    #         except IndexError:
-    #             break
-    #         i+=1
-    #         limit -=1
-    #     return answer
-
