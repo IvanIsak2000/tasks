@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "flask-tasks"
+version = "0.1.0"
+description = ""
+authors = ["IvanIsak2000 <vingving648@gmail.com>"]
+readme = "README.md"
+packages = [{include = "flask_tasks"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
