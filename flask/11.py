@@ -1,69 +1,69 @@
-from flask import Flask, request, render_template
 from dataclasses import dataclass
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-
 @dataclass
-class Flight1:
-    # number: str
-    # carrier: str
-    plane: str
-    from_: str
-    # to: str
-    departure_time: str
-    arriving_time: str
-    # seats: int
-    # tickets_sold: int
+class Flight:
+    number: str  # номер рейса
+    carrier: str  # авиакомпания
+    plane: str  # самолет
+    go_from: str  # аэропорт вылета
+    go_to: str  # аэропорт прибытия
 
 
-@dataclass
-class Flight2:
-    # number: str
-    # carrier: str
-    plane: str
-    # from_: str
-    to: str
-    departure_time: str
-    arriving_time: str
-    # seats: int
-    # tickets_sold: int
-    #
+all_flights = [
+  Flight(
+    number="AF123", 
+    carrier="Aeroflot", 
+    plane="Boeing737", 
+    go_from="DME", 
+    go_to="HEL"
+  ), Flight(
+    number="UA300", 
+    carrier="Ural Airlines", 
+    plane="Embraer170", 
+    go_from="HEL", 
+    go_to="DME"
+  ), Flight(
+    number="CD456", 
+    carrier="S7 Airlines", 
+    plane="AirbusA320", 
+    go_from="LEN", 
+    go_to="DME"
+), Flight(
+    number="EF789", 
+    carrier="Ural Airlines", 
+    plane="AirbusA321", 
+    go_from="SVX", 
+    go_to="AER"
+), Flight(
+    number="GH012", 
+    carrier="Pobeda", 
+    plane="Boeing737", 
+    go_from="DME", 
+    go_to="AER"
+), Flight(
+    number="IJ345", 
+    carrier="Aeroflot", 
+    plane="Boeing777", 
+    go_from="HEL", 
+    go_to="DME"
+)]
 
+@app.route('/flights/from/<from_>')
+def get_flighs(from_: str):
+    airport = from_.upper()
 
-@app.route('/flights/')
-def return_flights():
-    from_ = request.args.get('from').upper()
-    to = request.args.get('to').upper()
+    valid_airports = []
+    for i in range(len(all_flights)):
+        if all_flights[i].go_from == airport:
+            valid_airports.append(all_flights[i].number)
+    return sorted(valid_airports)
 
-    f1 = Flight1(
-        from_=from_.upper(),
-        plane='AB123',
-        departure_time='10:33',
-        arriving_time='13:17')
-
-    f2 = Flight2(
-        to=to.upper(),
-        plane='AB123',
-        departure_time='16:05',
-        arriving_time='18:55')
-
-    if from_ == to:
-        return f'''
-            {f1.from_} > {f2.to}
-            <br>
-            <br>
-            Не найдено'''
-
-    return f'''
-        {f1.from_} > {f2.to}
-        <br>
-        <br>
-        {f1.plane} {f1.departure_time} > {f1.arriving_time}
-        <br>
-        {f2.plane} {f2.departure_time} > {f2.arriving_time}
-        '''
+    # result = [flight.number for flight in  all_flights if all_flights.go_from == airport ]
+    # return jsonify(result)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=1)
