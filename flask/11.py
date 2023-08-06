@@ -55,14 +55,16 @@ all_flights = [
 def get_flighs(from_: str):
     airport = from_.upper()
 
-    valid_airports = []
-    for i in range(len(all_flights)):
-        if all_flights[i].go_from == airport:
-            valid_airports.append(all_flights[i].number)
-    return sorted(valid_airports)
+    # solution 1 
+    # valid_airports = []
+    # for i in range(len(all_flights)):
+    #     if all_flights[i].go_from == airport:
+    #         valid_airports.append(all_flights[i].number)
+    # return sorted(valid_airports)
 
-    # result = [flight.number for flight in  all_flights if all_flights.go_from == airport ]
-    # return jsonify(result)
+    # one-line solution
+    result = [flight.number for flight in  all_flights if flight.go_from == airport ]
+    return jsonify(result)
 
 
 if __name__ == '__main__':
