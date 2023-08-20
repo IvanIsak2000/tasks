@@ -7,3 +7,6 @@ from alphabet import alphabet
 @app.route('/letter/<letter>')
 def return_letter(letter):
     return alphabet[letter]
+
+if __name__ == '__main__':	
+    app.run(debug=True)
