@@ -4,6 +4,7 @@ from flask import Flask, request, abort
 
 app = Flask(__name__)
 
+
 @app.route('/get/')
 def get_len():
     len_ = int(request.args.get('len'))
@@ -12,9 +13,14 @@ def get_len():
     if len_ > 3:
         words = list(dict(alphabet).values())
         for w in words:
-            if len(w)  == len_:
+            if len(w) == len_:
                 result.append(w)
 
         return ' '.join(result)
 
     return abort(404)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
