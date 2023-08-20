@@ -1,5 +1,6 @@
 from alphabet import alphabet
-from flask import Flask, request, abort
+from flask import Flask, request
+
 app = Flask(__name__)
 
 
@@ -9,28 +10,31 @@ def get_alphabet():
     offset = request.args.get('offset')
     sort = request.args.get('sort')
 
-    letters = list(alphabet)
     letters = list(map(str.lower, alphabet))
 
     try:
         limit = int(limit)
+    except TypeError or ValueError:
+        limit = False
+
+    try:
         offset = int(offset)
-    except ValueError:
-        pass
+    except TypeError or ValueError:
+        offset = False
 
     if sort == 'desc':
         letters = letters[::-1]
 
-    if limit is None and offset is None:
+    if not limit and not offset:
         return ''.join(letters)
 
-    if limit is not None and offset is None:
+    if limit and not offset:
         return ''.join(letters[:limit])
 
-    if offset is not None and limit is None:
-        return ''.join(letters[limit:])
+    if offset and not limit:
+        return ''.join(letters[offset:])
 
-    if limit is not None and offset is not None:
+    if limit and offset:
         if limit <= 26 and offset < 26:
             answer = []
             i = 0
@@ -43,3 +47,7 @@ def get_alphabet():
                 limit -= 1
             return ''.join(answer)
     return letters
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
