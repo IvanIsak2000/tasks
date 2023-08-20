@@ -1,12 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask
+from alphabet import alphabet
 
 app = Flask(__name__)
 
-from alphabet import alphabet
 
 @app.route('/letter/<letter>')
 def return_letter(letter):
     return alphabet[letter]
 
-if __name__ == '__main__':	
+
+if __name__ == '__main__':
     app.run(debug=True)
