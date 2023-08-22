@@ -1,8 +1,10 @@
+from typing import List
+
 from flask import Flask, request
 
 app = Flask(__name__)
 
-items = ["alpha", "bravo", "charlie"]
+items: list[str] = ["alpha", "bravo", "charlie"]
 
 
 @app.route('/', methods=['POST'])
