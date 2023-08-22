@@ -2,7 +2,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-enrollments = [
+enrollments: list[dict[str]] = [
     {"name": "alex", "phone": "+123456789"},
 ]
 
