@@ -1,5 +1,5 @@
 from flask import Flask, request
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def add_item():
     pk += 1
     user = User(pk=pk, name=request.args.get('name'), phone=request.args.get('phone'))
     users.append(user)
-    return users
+    return asdict(user)
 
 
 if __name__ == '__main__':
