@@ -1,5 +1,3 @@
-from typing import List
-
 from flask import Flask, request
 
 app = Flask(__name__)
