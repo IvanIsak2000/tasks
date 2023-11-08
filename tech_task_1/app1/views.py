@@ -3,13 +3,8 @@ from django.http import HttpResponse
 from .models import Text
 
 
-# def home(request):
-#     data = Text.objects.all()
-#     # data = data.filter(public=True)
-#     return render(request, 'app1/index.html', {'data': data} )
-
 def home(request):
-    data = Text.objects.all()
+    data = Text.objects.all().filter(public=True)
     context = {
     'data': data
     }
