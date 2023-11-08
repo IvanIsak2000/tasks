@@ -41,15 +41,11 @@
 
 
   <div class="container p-4 g-col-6 w-50  ">
-      {% if data %}
-        {% for row in data %}
-        <div class="row bg-dark text-white  mt-3 rounded">
-          <p class="p-1 text-info">{{ row.text }}</p>
-        </div>
-        {% endfor %}
-      {% else %}
-        <p>not data</p>
-      {% endif %}
+    {% for row in data %}
+      <div class="row bg-dark  mt-3 rounded">
+            <p class="p-3 m-1 text-white">{{ row.text }}</p>
+      </div>
+    {% endfor %}
   </div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
