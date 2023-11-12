@@ -1,19 +1,6 @@
-<!doctype html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
-    <link href="{% static 'bootstrap/css/bootstrap.min.js' %}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}">
-    
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}">
-    <link rel="stylesheet" href="{% static 'static/scss/custom.sccs' %}">
-  </head>
-<body>
-
+{% extends "base.html" %}
   
+{% block  content %}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">Wiki</a>
@@ -25,13 +12,8 @@
           </li>
         </ul>
 
-        <ul class='navbar-nav d-flex justify-content-end grid gap-0 column-gap-3' >
-          <li class="nav-item"  style='text-decoration: none;'>
-            <a href="{% url 'signup' %}" class="btn btn-primary" role="button">Зарегаться</a>
-          </li>      
-
           <li class="nav-item">
-            <a href="#" class="btn btn-primary" role="button">Войти</a>
+            <a href="{% url 'login' %}" class="btn btn-primary" role="button">Войти</a>
           </li>
 
         </ul>
@@ -48,6 +30,4 @@
     {% endfor %}
   </div>
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-</body>
-</html>
+{% endblock %}
