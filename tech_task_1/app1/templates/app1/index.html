@@ -1,20 +1,38 @@
 {% extends "base.html" %}
-  
 {% block  content %}
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100">
     <div class="container">
       <a class="navbar-brand" href="#">Wiki</a>
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href=" {% url 'index' %} ">Home</a>
           </li>
         </ul>
 
-          <li class="nav-item">
-            <a href="{% url 'login' %}" class="btn btn-primary" role="button">Войти</a>
-          </li>
+         {% if  request.user.is_authenticated %}
+             <li class="nav-item">
+              <a href="{% url 'index' %}" class="btn btn-info" role="button">Выйти из аккаунта?</a>
+            </li>
+<!--          <div class="btn-group">-->
+<!--            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--              Аккаунт-->
+<!--            </button>-->
+<!--            <ul class="dropdown-menu">-->
+<!--              <li><a class="dropdown-item" href="#">Username: {{ username }} </a></li>-->
+<!--               <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>-->
+
+<!--              <li><hr class="dropdown-divider"></li>-->
+<!--              <li><a class="dropdown-item" href="logout">Выйти</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+          {% else %}
+            <li class="nav-item">
+              <a href="{% url 'login' %}" class="btn btn-primary" role="button">Войти</a>
+            </li>
+          {% endif %}
 
         </ul>
       </div>
