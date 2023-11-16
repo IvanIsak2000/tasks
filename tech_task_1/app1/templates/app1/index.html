@@ -15,37 +15,20 @@
              <li class="nav-item">
               <a href="{% url 'index' %}" class="btn btn-info" role="button">Выйти из аккаунта?</a>
             </li>
-<!--          <div class="btn-group">-->
-<!--            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--              Аккаунт-->
-<!--            </button>-->
-<!--            <ul class="dropdown-menu">-->
-<!--              <li><a class="dropdown-item" href="#">Username: {{ username }} </a></li>-->
-<!--               <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>-->
-
-<!--              <li><hr class="dropdown-divider"></li>-->
-<!--              <li><a class="dropdown-item" href="logout">Выйти</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-
           {% else %}
             <li class="nav-item">
-              <a href="{% url 'login' %}" class="btn btn-primary" role="button">Войти</a>
+              <a href="{% url 'account' %}" class="btn btn-primary" role="button">Войти</a>
             </li>
           {% endif %}
-
-        </ul>
       </div>
     </div>
   </nav>
 
-
-  <div class="container p-4 g-col-6 w-50  ">
+  <div class="container p-4 g-col-6 w-50" style="margin-top:0rem; top:2rem;">
     {% for row in data %}
-      <div class="row bg-dark  mt-3 rounded">
+      <div class="row bg-dark  mt-3 rounded ">
             <p class="p-3 m-1 text-white">{{ row.text }}</p>
       </div>
     {% endfor %}
   </div>
-
 {% endblock %}
