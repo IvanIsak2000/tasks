@@ -12,9 +12,16 @@
         </ul>
 
          {% if  request.user.is_authenticated %}
-             <li class="nav-item">
-              <a href="{% url 'index' %}" class="btn btn-info" role="button">Выйти из аккаунта?</a>
-            </li>
+          <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ username }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item">Роль: подписчик</a></li>
+              <li><a class="dropdown-item bg-danger" href="{% url 'index' %}">Выйти</a></li>
+            </ul>
+          </div>
+
           {% else %}
             <li class="nav-item">
               <a href="{% url 'account' %}" class="btn btn-primary" role="button">Войти</a>
@@ -24,7 +31,9 @@
     </div>
   </nav>
 
+
   <div class="container p-4 g-col-6 w-50" style="margin-top:0rem; top:2rem;">
+    <br>
     {% for row in data %}
       <div class="row bg-dark  mt-3 rounded ">
             <p class="p-3 m-1 text-white">{{ row.text }}</p>
