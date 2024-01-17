@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "trash"
+version = "0.1.0"
+description = ""
+authors = ["IvanIsak2000 <vingving648@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+fastapi = "^0.109.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.6"
+uvicorn = "^0.26.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
